@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <logLevel/>
+                <loggerName>
+                    <shortenedLoggerNameLength>26</shortenedLoggerNameLength>
+                </loggerName>
+                <version>
+                    <version>${version}</version>
+                </version>
+                <message/>
+                <mdc>
+                    <mdcKeyFieldName>traceId=x-b3-traceid</mdcKeyFieldName>
+                    <mdcKeyFieldName>spanId=x-b3-spanid</mdcKeyFieldName>
+                    <mdcKeyFieldName>requestId=x-request-id</mdcKeyFieldName>
+                </mdc>
+                <logstashMarkers/>
+                <stackTrace>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                        <maxLength>2048</maxLength>
+                        <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                        <exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+                        <rootCauseFirst>true</rootCauseFirst>
+                        <inlineHash>true</inlineHash>
+                    </throwableConverter>
+                </stackTrace>
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="json"/>
+    </root>
+</configuration>

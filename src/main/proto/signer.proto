@@ -1,0 +1,15 @@
+syntax="proto3";
+
+package ru.tinkoff.integration.openbanking.grpc;
+
+service Random {
+  rpc GetRandom(GetRandomRequest) returns(GetRandomResponse);
+}
+
+message GetRandomRequest {
+  int32 size = 1;
+}
+
+message GetRandomResponse {
+  bytes random = 1;
+}
